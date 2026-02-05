@@ -1,0 +1,36 @@
+#include "Employee.h"
+
+int main() {
+    Employee e1, e2, e3;
+
+    cout << "\nEnter data for Employee 1\n";
+    e1.get_data();
+
+    cout << "\nEnter data for Employee 2\n";
+    e2.get_data();
+
+    cout << "\nEnter data for Employee 3\n";
+    e3.get_data();
+
+    cout << "\n--- Salaries after initial tax ---\n";
+    e1.show_salary();
+    cout << endl;
+    e2.show_salary();
+    cout << endl;
+    e3.show_salary();
+
+    cout << "\nIncreasing tax to 3% for all employees...\n";
+
+    e1.update_tax_percentage(3);
+    e2.update_tax_percentage(3);
+    e3.update_tax_percentage(3);
+
+    cout << "\n--- Salaries after tax increase ---\n";
+    e1.show_salary();
+    cout << endl;
+    e2.show_salary();
+    cout << endl;
+    e3.show_salary();
+
+    return 0;
+}
