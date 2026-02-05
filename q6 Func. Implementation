@@ -1,0 +1,27 @@
+#include "Employee.h"
+
+void Employee::get_data() {
+    cout << "Enter employee name: ";
+    cin >> name;
+
+    cout << "Enter monthly salary: ";
+    cin >> salary;
+
+    cout << "Enter tax percentage: ";
+    cin >> taxPercent;
+}
+
+double Employee::Salary_after_tax() {
+    double taxAmount = salary * (taxPercent / 100);
+    return salary - taxAmount;
+}
+
+void Employee::update_tax_percentage(double newTax) {
+    taxPercent = newTax;
+    cout << "Tax percentage updated to " << taxPercent << "%\n";
+}
+
+void Employee::show_salary() {
+    cout << "Employee Name: " << name << endl;
+    cout << "Salary after tax: " << Salary_after_tax() << endl;
+}
