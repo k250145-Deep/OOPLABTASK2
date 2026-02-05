@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+
+class WaterBottle {
+private:
+    string company;
+    string color;
+    int waterML;
+    double waterL;
+
+public:
+    void setCompany(string c) {
+        company = c;
+    }
+
+    void setColor(string c) {
+        color = c;
+    }
+
+    void setWaterML(int ml) {
+        waterML = ml;
+        waterL = waterML / 1000.0;
+    }
+
+    string getCompany() {
+        return company;
+    }
+
+    string getColor() {
+        return color;
+    }
+
+    int getWaterML() {
+        return waterML;
+    }
+
+    double getWaterL() {
+        return waterL;
+    }
+
+    void drinkWater() {
+        int drink;
+
+        cout << "How much water did you drink (ml): ";
+        cin >> drink;
+
+        waterML = waterML - drink;
+
+        if (waterML < 0) {
+            waterML = 0;
+        }
+
+        waterL = waterML / 1000.0;
+    }
+};
+
+int main() {
+    WaterBottle w;
+
+    w.setCompany("Nestle");
+    w.setColor("Green");
+    w.setWaterML(1000);
+
+    cout << "Company: " << w.getCompany() << endl;
+    cout << "Color: " << w.getColor() << endl;
+    cout << "Water: " << w.getWaterML() << " ml" << endl;
+    cout << "Water: " << w.getWaterL() << " liters" << endl;
+
+    w.drinkWater();
+
+    cout << endl;
+    cout << "After drinking water:" << endl;
+    cout << "Water: " << w.getWaterML() << " ml" << endl;
+    cout << "Water: " << w.getWaterL() << " liters" << endl;
+
+    return 0;
+}
