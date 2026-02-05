@@ -1,0 +1,146 @@
+#include <iostream>
+using namespace std;
+
+class StationeryShop {
+private:
+    string items[50];
+    double prices[50];
+    int count;
+
+public:
+    StationeryShop() {
+        count = 0;
+    }
+
+    void addItem() {
+        cout << "Enter item name: ";
+        cin >> items[count];
+
+        cout << "Enter item price: ";
+        cin >> prices[count];
+
+        count++;
+        cout << "Item added successfully.\n";
+    }
+
+    void showItems() {
+        if (count == 0) {
+            cout << "No items available.\n";
+            return;
+        }
+
+        for (int i = 0; i < count; i++) {
+            cout << i + 1 << ". " << items[i] << endl;
+        }
+    }
+
+    void showItemsWithPrices() {
+        if (count == 0) {
+            cout << "No items available.\n";
+            return;
+        }
+
+        for (int i = 0; i < count; i++) {
+            cout << items[i] << " - Rs " << prices[i] << endl;
+        }
+    }
+
+    void editPrice() {
+        string name;
+        cout << "Enter item name to edit price: ";
+        cin >> name;
+
+        for (int i = 0; i < count; i++) {
+            if (items[i] == name) {
+                cout << "Enter new price: ";
+                cin >> prices[i];
+                cout << "Price updated.\n";
+                return;
+            }
+        }
+
+        cout << "Item not found.\n";
+    }
+
+    void generateReceipt() {
+        string name;
+        int qty;
+        double total = 0;
+
+        cout << "\n--- Receipt ---\n";
+
+        while (true) {
+            cout << "Enter item name (or end to finish): ";
+            cin >> name;
+
+            if (name == "end") {
+                break;
+            }
+
+            cout << "Enter quantity: ";
+            cin >> qty;
+
+            bool found = false;
+
+            for (int i = 0; i < count; i++) {
+                if (items[i] == name) {
+                    double cost = prices[i] * qty;
+                    cout << name << " x " << qty << " = Rs " << cost << endl;
+                    total = total + cost;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                cout << "Item not found.\n";
+            }
+        }
+
+        cout << "Total Bill: Rs " << total << endl;
+        cout << "----------------\n";
+    }
+};
+
+int main() {
+    StationeryShop shop;
+    int choice;
+
+    do {
+        cout << "\n--- Stationery Shop Menu ---\n";
+        cout << "1. Add Item\n";
+        cout << "2. View Items\n";
+        cout << "3. Edit Item Price\n";
+        cout << "4. View Items with Prices\n";
+        cout << "5. Generate Receipt\n";
+        cout << "6. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            shop.addItem();
+            break;
+        case 2:
+            shop.showItems();
+            break;
+        case 3:
+            shop.editPrice();
+            break;
+        case 4:
+            shop.showItemsWithPrices();
+            break;
+        case 5:
+            shop.generateReceipt();
+            break;
+        case 6:
+            cout << "Exiting program.\n";
+            break;
+        default:
+            cout << "Invalid choice.\n";
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
