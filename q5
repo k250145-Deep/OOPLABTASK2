@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+class Employee {
+private:
+    string name;
+    double salary;
+    double taxPercent;
+
+public:
+    void get_data() {
+        cout << "Enter employee name: ";
+        cin >> name;
+
+        cout << "Enter monthly salary: ";
+        cin >> salary;
+
+        cout << "Enter tax percentage: ";
+        cin >> taxPercent;
+    }
+
+    double Salary_after_tax() {
+        double taxAmount = salary * (taxPercent / 100);
+        double remainingSalary = salary - taxAmount;
+        return remainingSalary;
+    }
+
+    void update_tax_percentage(double newTax) {
+        taxPercent = newTax;
+        cout << "Tax percentage updated to " << taxPercent << "%\n";
+    }
+
+    void show_salary() {
+        cout << "Employee Name: " << name << endl;
+        cout << "Salary after tax: " << Salary_after_tax() << endl;
+    }
+};
+
+int main() {
+    Employee emp;
+
+    emp.get_data();
+
+    cout << "\nAfter initial tax deduction:\n";
+    emp.show_salary();
+
+    cout << "\nUpdating tax percentage...\n";
+    emp.update_tax_percentage(3);
+
+    cout << "\nAfter increased tax deduction:\n";
+    emp.show_salary();
+
+    return 0;
+}
